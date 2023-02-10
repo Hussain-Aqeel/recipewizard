@@ -11,8 +11,8 @@ class Rating extends Model
     
     protected $fillable = [
       'out_of_five',
+      'recipe_id',
       'user_id',
-      'recipe_id'
     ];
     
     function user() {

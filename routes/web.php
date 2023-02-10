@@ -1,6 +1,9 @@
 <?php
-
-use Illuminate\Support\Facades\Route;
+  
+  use App\Http\Livewire\RecipesList;
+  use App\Http\Livewire\UserRecipesList;
+  use App\Http\Livewire\ViewRecipe;
+  use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,15 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('recipes');
 });
+
+Route::get('/recipes', RecipesList::class)->name('recipes');
+Route::get('recipe/{recipeId}', ViewRecipe::class)->name('view-recipe');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/recipes', function () {
-        return view('recipes');
-    })->name('recipes');
+  Route::get('/user/{userId}/recipes', UserRecipesList::class)->name('user-recipes');
 });
+

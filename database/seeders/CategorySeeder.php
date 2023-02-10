@@ -17,7 +17,7 @@ class CategorySeeder extends Seeder
     {
         DB::table('categories')->insert([
           [
-            'name' => 'Breakfast'
+            'name' => 'Breakfast',
           ],
           [
             'name' => 'Lunch'

@@ -18,4 +18,8 @@ class Comment extends Model
     function recipe(){
       return $this->belongsTo(Recipe::class);
     }
+    
+    function user(){
+      return $this->belongsTo(User::class);
+    }
 }

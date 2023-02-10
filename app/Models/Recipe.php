@@ -18,6 +18,8 @@ class Recipe extends Model
       'user_id',
       'category_id'
     ];
+  
+    protected $with = ['user', 'category'];
     
     protected $casts = [
       'ingredients' => 'array',
@@ -25,15 +27,15 @@ class Recipe extends Model
     ];
     
     function user(){
-      return $this->hasOne(User::class);
+      return $this->belongsTo(User::class, 'user_id');
     }
     
     function category(){
-      return $this->hasMany(Category::class);
+      return $this->belongsTo(Category::class, 'category_id');
     }
   
     function comment(){
-      return $this->hasMany(Comment::class);
+      return $this->hasMany(Comment::class)->orderByDesc('created_at');
     }
   
     function rating(){
