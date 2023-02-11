@@ -62,7 +62,6 @@
           "></textarea>
         <x-jet-input-error for="method" class="mt-1"/>
         
-        
         <template x-for="(item, index) in method" :key="index">
           <div class="mt-4">
             <span x-text="item"></span>

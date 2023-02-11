@@ -61,8 +61,7 @@
           @keydown.enter.prevent="method.push($refs.self.value); $refs.self.value=''
           "></textarea>
         <x-jet-input-error for="method" class="mt-1"/>
-  
-  
+        
         <template x-for="(item, index) in method" :key="index">
           <div class="mt-4">
             <span x-text="item"></span>

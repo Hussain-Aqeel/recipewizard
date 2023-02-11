@@ -10,33 +10,33 @@ use Livewire\Component;
 
 class ViewRecipe extends Component
 {
-  public Recipe $recipeId;
-  
-  public $deleteModal = false;
-  
-  public $comment;
-  
+    public Recipe $recipeId;
+    
+    public $deleteModal = false;
+    
+    public $comment;
+    
     public function render()
     {
         return view('livewire.view-recipe', [ 'recipe' => $this->recipeId ]);
     }
-  
-  public function addComment() {
-    if($this->comment != '') {
-      $comment = [
-        'content' => $this->comment,
-        'user_id' => Auth::id(),
-        'recipe_id' => $this->recipeId->id,
-      ];
-      
-      $comment = Comment::create($comment);
-      
-      $this->reset(['comment']);
-      
-      $this->recipeId->refresh();
-      
+    
+    public function addComment() {
+        if($this->comment != '') {
+            $comment = [
+              'content' => $this->comment,
+              'user_id' => Auth::id(),
+              'recipe_id' => $this->recipeId->id,
+            ];
+            
+            $comment = Comment::create($comment);
+            
+            $this->reset(['comment']);
+            
+            $this->recipeId->refresh();
+            
+        }
     }
-  }
   
   public function deleteRecipe($id) {
     $recipe = Recipe::find($id);
@@ -56,4 +56,5 @@ class ViewRecipe extends Component
   public function toggle() {
       $this->deleteModal = ! $this->deleteModal;
   }
+  
 }

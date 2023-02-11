@@ -228,8 +228,7 @@
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
-  
-  
+        
         <template x-for="(item, index) in method" :key="index">
           <div class="mt-4">
             <span x-text="item"></span>
@@ -309,14 +308,4 @@
     </div>
   </div>
 </div>
-
-<?php $__env->startPush('scripts'); ?>
-  
-  <script>
-  
-  </script>
-
-<?php $__env->stopPush(); ?>
-
-
 <?php /**PATH /home/hussain-fedora/code/recipewizard-boilerplate/resources/views/livewire/add-recipe.blade.php ENDPATH**/ ?>

@@ -12,8 +12,8 @@ class AddRecipe extends Component
   use WithFileUploads;
   
   public $name;
-  public $category;
   public $description;
+  public $category;
   public $ingredients = [];
   public $method = [];
   public $img;

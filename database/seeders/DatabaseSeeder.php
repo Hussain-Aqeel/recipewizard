@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Category;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,7 +18,6 @@ class DatabaseSeeder extends Seeder
         UserSeeder::class,
         CategorySeeder::class,
         RecipeSeeder::class,
-        RatingSeeder::class,
         CommentSeeder::class
       ]);
     }

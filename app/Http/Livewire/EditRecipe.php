@@ -4,43 +4,43 @@ namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\Recipe;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class EditRecipe extends Component
 {
-  public Recipe $recipeId;
+    public Recipe $recipeId;
+    
+    use WithFileUploads;
+    
+    public $name;
+    public $description;
+    public $category;
+    public $ingredients = [];
+    public $method = [];
+    public $img;
+    
+    /**
+     * Validation rules
+     *
+     * @var string[]
+     */
+    protected $rules = [
+      'name' => 'bail|required',
+      'description' => 'bail|required',
+      'ingredients' => 'bail|required|filled',
+      'method' => 'bail|required|filled',
+      'img' => 'nullable|mimes:jpg,jpeg,png,bmp,gif,svg,webp,pdf,docx|max:69000'
+    ];
   
-  use WithFileUploads;
+    public function mount() {
+      $this->name = $this->recipeId->name;
+      $this->description = $this->recipeId->description;
+      $this->category = $this->recipeId->category_id;
+      $this->ingredients = $this->recipeId->ingredients;
+      $this->method = $this->recipeId->method;
+    }
   
-  public $name;
-  public $category;
-  public $description;
-  public $ingredients = [];
-  public $method = [];
-  public $img;
-  
-  /**
-   * Validation rules
-   *
-   * @var string[]
-   */
-  protected $rules = [
-    'name' => 'bail|required',
-    'description' => 'bail|required',
-    'ingredients' => 'required|filled',
-    'method' => 'required|filled',
-    'img' => 'nullable|mimes:jpg,jpeg,png,bmp,gif,svg,webp,pdf,docx|max:69000'
-  ];
-  
-  public function mount() {
-    $this->name = $this->recipeId->name;
-    $this->description = $this->recipeId->description;
-    $this->category = $this->recipeId->category_id;
-    $this->ingredients = $this->recipeId->ingredients;
-    $this->method = $this->recipeId->method;
-  }
     public function render()
     {
         return view('livewire.edit-recipe', [

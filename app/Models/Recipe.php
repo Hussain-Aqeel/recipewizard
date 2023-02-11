@@ -37,8 +37,5 @@ class Recipe extends Model
     function comment(){
       return $this->hasMany(Comment::class)->orderByDesc('created_at');
     }
-  
-    function rating(){
-      return $this->hasMany(Rating::class);
-    }
+    
 }

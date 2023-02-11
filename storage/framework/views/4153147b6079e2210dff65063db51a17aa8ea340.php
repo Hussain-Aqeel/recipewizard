@@ -45,7 +45,7 @@
             <?php $__currentLoopData = $recipes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $recipe): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <div class="max-w-xs xl:max-w-sm mx-auto my-2.5 rounded overflow-hidden
               shadow-lg">
-                <img class="w-full" src="<?php echo e(asset('storage/'. $recipe->image)); ?>" alt="Sunset in the mountains">
+                <img class="w-full" src="<?php echo e(asset('storage/'. $recipe->image)); ?>" alt="">
                 <div class="px-6 py-4">
                   <p class="text-gray-400 mb-2"><?php echo e($recipe->user->name); ?></p>
                   <div class="font-bold text-xl mb-2"><?php echo e($recipe->name); ?></div>
