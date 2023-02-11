@@ -1,5 +1,7 @@
 <?php
   
+  use App\Http\Livewire\AddRecipe;
+  use App\Http\Livewire\EditRecipe;
   use App\Http\Livewire\RecipesList;
   use App\Http\Livewire\UserRecipesList;
   use App\Http\Livewire\ViewRecipe;
@@ -29,5 +31,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
   Route::get('/user/{userId}/recipes', UserRecipesList::class)->name('user-recipes');
+  Route::get('/user/{userId}/new-recipe', AddRecipe::class)->name('new-recipe');
+  Route::get('/edit/recipe/{recipeId}', EditRecipe::class)->name('edit-recipe');
 });
 

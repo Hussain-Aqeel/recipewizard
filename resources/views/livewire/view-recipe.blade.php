@@ -4,16 +4,17 @@
   
       @if(Auth()->user() == $recipe->user)
         <div class="mx-4 mb-7 inline-flex rounded-md shadow-sm">
-          <button
+          <a href="{{ route('edit-recipe', [ 'recipeId' => $recipe->id ]) }}"
             type="button"
             class="text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4
           focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm
           px-5 py-2.5 text-center inline-flex items-center mr-2">
             <x-heroicon-m-book-open class="h-4 mr-1.5" />
             Edit Recipe
-          </button>
+          </a>
       
           <button
+            wire:click="toggle"
             type="button"
             class="text-white bg-red-700 hover:bg-red-800 focus:ring-4
           focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm
@@ -28,10 +29,15 @@
         <h1 class="title mx-4 text-4xl lg:text-6xl mb-3">{{ $recipe->name }}</h1>
           <img
             class="mx-4 object-cover object-center w-3/4 lg:w-1/2 h-64 md:h-[35rem]"
-            src="{{ $recipe->image }}"
+            src="{{ asset('storage/'. $recipe->image) }}"
             alt="{{ $recipe->name }}">
       </div>
-      
+        
+        <div>
+          <p class="text-lg mt-7 mx-4 leading-loose break-words">
+            {{ $recipe->description }}
+          </p>
+        </div>
   
       <div id="ingredients" class="mt-14">
         <ul class="w-full text-md font-medium text-gray-900">
@@ -102,8 +108,35 @@
             @endforeach
           </div>
         </section>
-        
       </div>
+  
+        {{-- Modal --}}
+        <x-jet-dialog-modal wire:model="deleteModal">
+          <x-slot name="title">
+            {{ __('Delete Recipe') }}
+          </x-slot>
+    
+          <x-slot name="content">
+            {{ __('Are you sure you want to delete your delicious recipe?') }}
+          </x-slot>
+    
+          <x-slot name="footer">
+            <button
+              class="text-white bg-red-700 hover:bg-red-800 focus:ring-4
+          focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm
+          px-5 py-2.5 text-center inline-flex items-center mr-2"
+              wire:click="deleteRecipe({{ $recipeId->id }})"
+              wire:loading.attr="disabled">
+              {{ __('Delete') }}
+            </button>
+            
+            <x-jet-button
+              wire:click="toggle"
+              wire:loading.attr="disabled">
+              {{ __('Cancel') }}
+            </x-jet-button>
+          </x-slot>
+        </x-jet-dialog-modal>
     </div>
   </div>
 </div>

@@ -33,6 +33,15 @@
 
             <!-- Page Content -->
             <main>
+              <!-- Flash Messages -->
+              <div>
+                @if (session()->has('message'))
+                  <x-jet-banner>
+                    {{ session('message') }}
+                  </x-jet-banner>
+                @endif
+              </div>
+              
                 {{ $slot }}
             </main>
         </div>

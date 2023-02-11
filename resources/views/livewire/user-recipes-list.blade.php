@@ -1,17 +1,15 @@
 <div>
   <div class="py-12">
-    
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <button
-        type="button"
+      <a
+        href="{{ route('new-recipe', [ 'userId' => auth()->id() ]) }}"
         class="text-white mx-4 mb-5 bg-blue-700 hover:bg-blue-800 font-medium rounded-lg
-        text-sm
-          px-5 py-2.5 text-center inline-flex items-center mr-2">
+            text-sm px-5 py-2.5 text-center inline-flex items-center mr-2">
         <x-heroicon-m-book-open class="h-4 mr-1.5" />
         Create New Recipe
-      </button>
+      </a>
       <div>
-        <x-jet-input wire:model="searchTerm" class="h-12 w-4/5 md:w-1/2 mx-4 my-3.5 p-3"
+        <x-jet-input wire:model="search" class="h-12 w-4/5 md:w-1/2 mx-4 my-3.5 p-3"
                      placeholder="search" />
       </div>
      
@@ -19,7 +17,8 @@
         @foreach($recipes as $recipe)
           <div class="max-w-xs xl:max-w-sm mx-auto my-2.5 rounded overflow-hidden
               shadow-lg">
-            <img class="w-full" src="{{ $recipe->image }}" alt="Sunset in the mountains">
+            <img class="w-full" src="{{ asset('storage/'. $recipe->image) }}"
+                 alt="">
             <div class="px-6 py-4">
               <p class="text-gray-400 mb-2">{{ $recipe->user->name }}</p>
               <div class="font-bold text-xl mb-2">{{ $recipe->name }}</div>
